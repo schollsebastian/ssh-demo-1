@@ -18,7 +18,10 @@ jobs:
         with:
           java-version:   11
       - name: Build
-        run: ./mvnw clean package -Dquarkus.package.type=uber-jar -B
+        run: |
+          ./mvnw clean package -Dquarkus.package.type=uber-jar -B
+          chmod +x ./prepare-to-docker.sh
+          ./prepare-to-docker.sh
       - name: install ssh key
         uses: webfactory/ssh-agent@v0.4.1
         with:
@@ -31,3 +34,5 @@ jobs:
           echo "Hallo ich bin hier"
           ls -l target/
           scp target/ssh-demo-1.0.0-SNAPSHOT-runner.jar ${{ secrets.ORAVM_USER }}@${{ secrets.ORAVM_IP }}:
+      - name: build docker image
+        run: docker build -t registry.cloud.htl-leonding.ac.at/l.starka/demo .

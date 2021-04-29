@@ -1,7 +1,7 @@
 FROM openjdk:14
 
 RUN mkdir /deployments
-COPY ./ssh-demo-1.0.0-SNAPSHOT-runner.jar /deployments/
+COPY ./demo.jar /deployments/
 #COPY ./deployments/lib/* /deployments/lib/
 COPY scripts/* /deployments/
 RUN sed -e 's/\r$//' -i /deployments/*.sh && chmod +x /deployments/*.sh
