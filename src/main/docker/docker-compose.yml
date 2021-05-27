@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   demo:
-    image: registry.cloud.htl-leonding.ac.at/l.starka/demo
+    image: registry.cloud.htl-leonding.ac.at/s.scholl/demo
     restart: always
     ports:
       - 8080:8080
